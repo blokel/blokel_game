@@ -11,17 +11,18 @@ submoretrees = false -- set this to true if you want to replace the default tree
 floatlands = true -- enable this to enable floatlands
 normalbiomes = true -- enable this to enable biomes
 
+-- Try out PseudoRandom
+pseudo = PseudoRandom(13)
+assert(pseudo:next() == 22290)
+assert(pseudo:next() == 13854)
+
 --
 -- Enable/Disable Biomes
 --
-enablemeadow = true
-enablejungle = true
+enablegrassland = true
 enabledesert = true
 enablesnowmountain = true
-enablegrassmountain = true
 enablealpine = true
-enabledune = true
-enableprairie = true
 
 
 --
@@ -29,83 +30,59 @@ enableprairie = true
 --
 
 if normalbiomes then
-
-	if enablemeadow then
+	-- Grassland
+	if enablegrassland then
 		minetest.register_biome({
-			name = "meadow",
-			node_top = "default:dirt_with_grass",		depth_top = 1,
-			node_filler = "default:dirt",			depth_filler = 3,
-			height_min = 2,					height_max = 500,
-			heat_point = 100,				humidity_point = 30,
+			name           = "Grassland",
+			-- Will use defaults of omitted parameters
+			y_min          = -31000,
+			y_max          = 31000,
+			heat_point     = 50,
+			humidity_point = 50,
 		})
 	end
 
-	if enablejungle then
-		minetest.register_biome({
-			name = "jungle",
-			node_top = "default:dirt_with_grass",		depth_top = 1,
-			node_filler = "default:dirt",			depth_filler = 3,
-			height_min = 2,					height_max = 500,
-			heat_point = 150,				humidity_point = 80,
-		})
-	end
 
+	-- Desert
 	if enabledesert then
 		minetest.register_biome({
 			name = "desert",
-			node_top = "default:desert_sand",		depth_top = 1, -- 3
-			node_filler = "default:desert_stone",		depth_filler = 3, -- 57
-			height_min = -500,				height_max = 500,
-			heat_point = 100, 				humidity_point = 30, -- 40 --- 0
+			node_top = "default:desert_sand",
+			node_filler = "default:desert_stone",
+			y_min          = -31000,
+			y_max          = 31000,
+			heat_point     = 50,
+			humidity_point = 50,
+
+
 		})
 	end
-
+	-- Snow Mountains
 	if enablesnowmountain then
 		minetest.register_biome({
 			name = "snowmountain",
-			node_top = "default:snowblock",			depth_top = 1,
-			node_filler = "default:dirt_with_snow",		depth_filler = 1,
-			height_min = 80,				height_max = 1000,
+			node_top = "default:snowblock",
+			node_filler = "default:dirt_with_snow",
+			y_min          = -31000,
+			y_max          = 31000,
+			heat_point     = 50,
+			humidity_point = 50,
 		})
 	end
-
-	if enablegrassmountain then
-		minetest.register_biome({
-			name = "grassmountain",
-			node_top = "default:dirt_with_grass",		depth_top = 1,
-			node_filler = "default:dirt",			depth_filler = 1,
-			height_min = 300,				height_max = 1000,
-		})
-	end
-
+	-- Alpines
 	if enablealpine then
 		minetest.register_biome({
 			name = "alpine",
-			node_top = "default:snowblock",			depth_top = 1,
-			node_filler = "default:dirt_with_snow",		depth_filler = 1,
-			height_min = 100,				height_max = 800,
+			node_top = "default:snowblock",
+			node_filler = "default:dirt_with_snow",
+			y_min          = -31000,
+			y_max          = 31000,
+			heat_point     = 50,
+			humidity_point = 50,
+
 		})
 	end
 
-	if enabledune then
-		minetest.register_biome({
-			name = "dune",
-			node_top = "default:sand",			depth_top = 3,
-			node_filler = "default:dirt",			depth_filler = 2,
-			height_min = 1,					height_max = 500,
-			heat_point = 100,				humidity_point = 10,
-		})
-	end
-
-	if enableprairie then
-		minetest.register_biome({
-			name = "prairie",
-			node_top = "default:dirt_with_grass",		depth_top = 1,
-			node_filler = "default:dirt",			depth_filler = 4,
-			height_min = 40,				height_max = 500,
-			heat_point = 40,				humidity_point = 20,
-		})
-	end
 end
 
 --
